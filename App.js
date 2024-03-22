@@ -1,20 +1,33 @@
+
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { ThemeProvider, createTheme } from '@rneui/themed';
+import { UserProvider } from './Util/UserContext';
+import { Main } from './Views/Main';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+const theme = createTheme({
+  lightColors: {
+    primary: '#f3712a',
+  },
+  darkColors: {
+    primary: '#000',
+  },
+  mode: 'light',
+});
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <SafeAreaProvider style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <UserProvider>
+            <StatusBar style='auto' />
+            <Main />
+          </UserProvider>
+        </NavigationContainer>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
