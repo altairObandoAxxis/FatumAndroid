@@ -15,7 +15,7 @@ const DefaultHome =()=>{
     </View>
 }
 
-const Test =()=><Text>Testing bottom nav </Text>
+const Test =()=><Text>Comming Soon</Text>
 
 
 
