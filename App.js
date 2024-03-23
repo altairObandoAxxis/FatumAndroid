@@ -23,7 +23,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <UserProvider>
-            <StatusBar style='auto' />
+            {/* <StatusBar style='auto' /> */}
             <Main />
           </UserProvider>
         </NavigationContainer>

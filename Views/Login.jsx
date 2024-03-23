@@ -1,6 +1,6 @@
 import React, { useState, createRef } from 'react';
 import { Button, Input } from "@rneui/themed"
-import { ImageBackground, Image, View, Dimensions, Alert } from "react-native"
+import { ImageBackground, Image, View, Dimensions, Alert, KeyboardAvoidingView, Platform } from "react-native"
 import { DoLogin } from '../Api/login';
 import { useUserData } from '../Util/UserContext';
 export const Login =({ onUserLoginSuccess })=>{
@@ -46,31 +46,36 @@ export const Login =({ onUserLoginSuccess })=>{
                 justifyContent:'center',
                 padding: 10
                 }}>
-            <Image
-                source={require('../assets/fatum.png')} 
-                style={{ resizeMode:'contain', alignSelf:'center', width:200, height: 200, marginBottom: 200  }} />
-            <Input 
-                name='email' 
-                ref={ emailRef } 
-                keyboardType='email-address' 
-                placeholder='User'
-                errorMessage={ errorEmail }
-                leftIcon={{ type: 'font-awesome', name: 'user', color:'gray' }}
-                onChangeText={ value => setEmail(value )}/>
-            <Input 
-                name='password'
-                secureTextEntry={true}
-                ref={ passwordRef }
-                placeholder='Password'
-                errorMessage={ errorPass }
-                leftIcon={{ type: 'font-awesome', name: 'lock', color:'gray' }}
-                onChangeText={ value => setPassw( value )}/>
-            <Button 
-                title="Sign In" onPress={ ValidateLogin }
-                style={{ width: '90%', alignSelf:'center', borderRadius: 10, overflow: 'hidden'}}
-                loading={ isLoading }
-                disabled={ isLoading }
-                />
+            <KeyboardAvoidingView
+                behavior={ Platform.OS == 'ios' ? 'padding' : 'height' }
+                style={{ flex: 1 }}>
+                <Image
+                    source={require('../assets/fatum.png')} 
+                    style={{ resizeMode:'contain', alignSelf:'center', width:200, height: 200, marginBottom: 200  }} />
+                <Input 
+                    name='email' 
+                    ref={ emailRef } 
+                    keyboardType='email-address' 
+                    placeholder='User'
+                    errorMessage={ errorEmail }
+                    leftIcon={{ type: 'font-awesome', name: 'user', color:'gray' }}
+                    onChangeText={ value => setEmail(value )}/>
+                <Input 
+                    name='password'
+                    secureTextEntry={true}
+                    ref={ passwordRef }
+                    placeholder='Password'
+                    errorMessage={ errorPass }
+                    leftIcon={{ type: 'font-awesome', name: 'lock', color:'gray' }}
+                    onChangeText={ value => setPassw( value )}/>
+                <Button 
+                    title="Sign In" onPress={ ValidateLogin }
+                    style={{ width: '90%', alignSelf:'center', borderRadius: 10, overflow: 'hidden'}}
+                    loading={ isLoading }
+                    disabled={ isLoading }
+                    />
+            </KeyboardAvoidingView>
+            
         </ImageBackground>
     </View>
 }
