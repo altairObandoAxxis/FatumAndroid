@@ -8,6 +8,7 @@ import { GetStarted } from './GetStarted';
 import { DoCmd } from '../Api/doCmd';
 import { useEffect, useState } from 'react';
 import { PolicyView } from './PolicyView';
+import { ClaimView } from './ClaimView';
 
 const Tab = createBottomTabNavigator();
 const Test =()=><Text>Comming Soon</Text>
@@ -64,7 +65,7 @@ export const Home =({ onUserLogOut })=>{
                         tabBarIcon:({size, color })=> <Icon type='entypo' name='heart' size={size} color={color} />}}/>
                 <Tab.Screen 
                     name='Claims' 
-                    component={ Test }
+                    component={ ClaimView }
                     options={{
                         tabBarBadge: formatBadge(ContactData?.Claims?.length ?? 0 ),
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='medkit' size={size} color={color} />}}/>

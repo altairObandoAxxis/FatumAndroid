@@ -1,8 +1,8 @@
-import { FlatList, View } from "react-native"
-import { useUserData } from "../../Util/UserContext"
-import { createRef, useEffect, useState } from "react";
-import { Icon, SearchBar, Text, useTheme } from "@rneui/themed";
-import { PolicyListItem } from "./PolicyListItem";
+import { FlatList, View } from 'react-native'
+import { useUserData } from '../../Util/UserContext'
+import { createRef, useEffect, useState } from 'react';
+import { Icon, SearchBar, Text, useTheme } from '@rneui/themed';
+import { PolicyListItem } from './PolicyListItem';
 
 export const PolicyList =({ navigation })=>{
     const { userData } = useUserData();
@@ -45,11 +45,11 @@ export const PolicyList =({ navigation })=>{
             onChangeText={ setFilter }
             platform='ios' />
         <FlatList
-        data={ policies }
-        keyExtractor={ item => item.id }
-        style={{ backgroundColor: theme.colors.white }}
-        contentContainerStyle={{ backgroundColor: theme.colors.white }}
-        renderItem={({item})=> <PolicyListItem item={item} onItemPress={ ()=> navigation.navigate('detail', item )}  /> }
+            data={ policies }
+            keyExtractor={ item => item.id }
+            style={{ backgroundColor: theme.colors.white }}
+            contentContainerStyle={{ backgroundColor: theme.colors.white }}
+            renderItem={({item})=> <PolicyListItem item={item} onItemPress={ ()=> navigation.navigate('detail', item )}  /> }
      />
     </>
 }

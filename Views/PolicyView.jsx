@@ -1,8 +1,8 @@
 
 import { useTheme, Text } from '@rneui/themed';
 import { createStackNavigator } from '@react-navigation/stack';
-import { PolicyDetail } from '../Components/Policy/PolicyDetail';
-import { PolicyList } from '../Components/Policy/PolicyList';
+import { PolicyList, PolicyDetail } from '../Components/Policy';
+import { Platform } from 'react-native';
 const Stack = createStackNavigator();
 
 const NewProduct =()=> <Text> New Product</Text>
@@ -13,26 +13,28 @@ export const PolicyView =()=>{
         <Stack.Navigator 
             screenOptions={{ 
                 headerTintColor: theme.colors.primary,
-                headerStyle: { height: 60 } }}>
+                headerStyle: { height: 80 } }}>
             <Stack.Group>
                 <Stack.Screen 
                     name='index' 
                     component={ PolicyList } 
                     options={{ 
-                        headerShown: false
+                        headerShown: false,
                     }}
                     />
                 <Stack.Screen 
                     name='detail' 
                     component={ PolicyDetail }
                     options={{
-                        headerTitle: 'My Policies'
+                        headerTitle: Platform.OS == 'android' ? 'My Policies': '',
+                        headerBackTitle: 'My Policies'
                     }} />
                 <Stack.Screen 
                     name='newProduct'
                     component={ NewProduct }
                     options={{ 
-                        headerTitle: 'New Product'
+                        headerTitle: Platform.OS == 'android' ? 'My Policies': '',
+                        headerBackTitle: 'My Policies'
                         }}  />
             </Stack.Group>
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
