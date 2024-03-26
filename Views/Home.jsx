@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { PolicyView } from './PolicyView';
 import { ClaimView } from './ClaimView';
 import { PremiumView } from './PremiumView';
-import { AccountDetail } from '../Components/Account';
+import { AccountView } from './AccountView';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ const formatBadge =( value ) => {
     return count > 99 ? '+99' : count.toString()
 }
 
-export const Home =({ onUserLogOut })=>{
+export const Home =()=>{
     const insets = useSafeAreaInsets();
     const { userData, setUserData } = useUserData();
     const [ ContactData, setData ]  = useState();
@@ -44,7 +44,8 @@ export const Home =({ onUserLogOut })=>{
     }
     useEffect(()=>{
         fetchUserData();
-        setUserData({...userData, onUserLogOut, refreshBadges: fetchUserData })
+        setUserData({...userData, 
+        refreshBadges: fetchUserData })
     },[userData.token])
 
     return <View style={{ paddingTop: insets.top, flex: 1, backgroundColor: 'white' }}>
@@ -79,7 +80,7 @@ export const Home =({ onUserLogOut })=>{
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='dollar' size={size} color={color} />}}/>
                 <Tab.Screen 
                     name='Profile' 
-                    component={ AccountDetail }
+                    component={ AccountView }
                     options={{
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='user' size={size} color={color} />}}/>
             </Tab.Group>

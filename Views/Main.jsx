@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import { Login } from './Login';
 import { Home } from './Home';
+import { useUserData } from '../Util/UserContext';
 
 export const Main=()=>{
-    const [ isLogged, setLogged ] = useState(false);
-    if( isLogged )
-        return <Home onUserLogOut={ ()=> setLogged(false) }/>
-    return <Login onUserLoginSuccess={ () => setLogged(true) }/>
+    const { userData } = useUserData();
+    if( userData && userData.token )
+        return <Home />
+    return <Login />
 }

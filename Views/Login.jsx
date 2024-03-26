@@ -1,9 +1,9 @@
-import React, { useState, createRef } from 'react';
-import { Button, Input } from "@rneui/themed"
-import { ImageBackground, Image, View, Dimensions, Alert, KeyboardAvoidingView, Platform } from "react-native"
+import React, { useState, useEffect, createRef } from 'react';
+import { Button, Input } from '@rneui/themed'
+import { ImageBackground, Image, View, Dimensions, Alert, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'
 import { DoLogin } from '../Api/login';
 import { useUserData } from '../Util/UserContext';
-export const Login =({ onUserLoginSuccess })=>{
+export const Login =()=>{
     const screenWidth = Dimensions.get('screen').width;
     const emailRef = createRef();
     const passwordRef = createRef();
@@ -34,9 +34,22 @@ export const Login =({ onUserLoginSuccess })=>{
                 return;
             }
             userData.setUserData(response.outData);
-            onUserLoginSuccess()
         }).finally(() => setIsLoading(false))
     }
+    const [keyboardStatus, setKeyboardStatus] = useState(false);
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+        setKeyboardStatus(true);
+        });
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+        setKeyboardStatus(false);
+        });    
+        return () => {
+        showSubscription.remove();
+        hideSubscription.remove();
+        };
+    }, []);
+
     return <View style={{ flex: 1, width: screenWidth, justifyContent: 'center' }}>
         <ImageBackground 
             source={require('../assets/landing.png')} 
@@ -51,13 +64,20 @@ export const Login =({ onUserLoginSuccess })=>{
                 style={{ flex: 1 }}>
                 <Image
                     source={require('../assets/fatum.png')} 
-                    style={{ resizeMode:'contain', alignSelf:'center', width:200, height: 200, marginBottom: 200  }} />
+                    style={{ 
+                        resizeMode:'contain', 
+                        alignSelf:'center', 
+                        width: 200, 
+                        height: 200,
+                        marginBottom: Platform.OS == 'ios' && keyboardStatus ? 75: 200,
+                        }} />
                 <Input 
                     name='email' 
                     ref={ emailRef } 
                     keyboardType='email-address' 
                     placeholder='User'
                     errorMessage={ errorEmail }
+                    value={ email }
                     leftIcon={{ type: 'font-awesome', name: 'user', color:'gray' }}
                     onChangeText={ value => setEmail(value )}/>
                 <Input 
@@ -67,6 +87,7 @@ export const Login =({ onUserLoginSuccess })=>{
                     placeholder='Password'
                     errorMessage={ errorPass }
                     leftIcon={{ type: 'font-awesome', name: 'lock', color:'gray' }}
+                    value={ passw }
                     onChangeText={ value => setPassw( value )}/>
                 <Button 
                     title="Sign In" onPress={ ValidateLogin }

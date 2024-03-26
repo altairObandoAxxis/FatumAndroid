@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { ClaimList, ClaimDetail } from '../Components/Claims';
 import { useTheme } from '@rneui/themed';
+import { Platform } from 'react-native';
 const Stack = createStackNavigator();
 
 export const ClaimView =()=>{
@@ -18,6 +19,8 @@ export const ClaimView =()=>{
         <Stack.Screen
             name='detail'
             component={ ClaimDetail }
-            options={{ title: 'My Claims'}} />
+            options={{ 
+                headerTitle: Platform.OS == 'android' ? 'My Claims': '',
+                headerBackTitle: 'My Claims'}}/>
         </Stack.Navigator>)
 }

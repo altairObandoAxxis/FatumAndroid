@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 
 export const GetStarted =()=>{
-    const { userData } = useUserData();
+    const { userData, setUserData } = useUserData();
     const [ policies, setPolicies ] = useState([])
     const fetchUserData =()=>{
         DoCmd({
@@ -36,7 +36,10 @@ export const GetStarted =()=>{
                 <Image
                     source={require('../assets/fatum.png')} 
                     style={{ resizeMode:'contain', alignSelf:'center', width:100, height: 40 }} />
-                <Icon type='font-awesome' name='power-off' color = '#f3712a' style={{ marginRight: 10 }} onPress={ userData.onUserLogOut } />
+                <Icon type='font-awesome' name='power-off' color = '#f3712a' style={{ marginRight: 10 }} onPress={ ()=>{
+                    console.log('logout');
+                    setUserData({...userData, token: null });
+                } } />
             </View>
             <View style={{ marginLeft: 15, marginRight: 15, gap: 5 }}>
                 <Text h2>My Policies </Text>
