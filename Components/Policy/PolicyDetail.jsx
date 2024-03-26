@@ -16,9 +16,9 @@ export const PolicyDetail = ({ route })=> {
                 <Text style={{ fontWeight:'100', color: subTitleColor }}>POLICY INFO</Text>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' , alignItems: 'center' }}>
                     <Text style={{ flex: 1}}>{ Policy.active ? 'Active': 'Inactive'}</Text>
-                    <Switch value={ Policy.active } style={{ flex: 1}}/>
                 </View>
             </ListItem.Content>
+            <Switch value={ Policy.active } style={{ flex: 1}}/>
         </ListItem>
         <ListItem bottomDivider>
             <ListItem.Content>

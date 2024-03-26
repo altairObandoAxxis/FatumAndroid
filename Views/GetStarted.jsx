@@ -25,7 +25,6 @@ export const GetStarted =()=>{
     }
     useEffect(()=>{
         fetchUserData()
-        console.log('called')
     },[userData.contactId]);
 
     return <View style={{ flex: 1, backgroundColor: 'white'}}>

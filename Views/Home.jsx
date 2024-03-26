@@ -1,4 +1,4 @@
-import { Text, useTheme } from '@rneui/themed'
+import { useTheme } from '@rneui/themed'
 import { useUserData } from '../Util/UserContext'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -9,9 +9,10 @@ import { DoCmd } from '../Api/doCmd';
 import { useEffect, useState } from 'react';
 import { PolicyView } from './PolicyView';
 import { ClaimView } from './ClaimView';
+import { PremiumView } from './PremiumView';
+import { AccountDetail } from '../Components/Account';
 
 const Tab = createBottomTabNavigator();
-const Test =()=><Text>Comming Soon</Text>
 
 const formatBadge =( value ) => {
     if(!value || Number(value || 0) == 0)
@@ -36,6 +37,7 @@ export const Home =({ onUserLogOut })=>{
                     Policies:  GetContactData.outData.PoliciesAsHolder || [],
                     Claims:    GetContactData.outData.Claims || [],
                     Premiums:  GetContactData.outData.Premiums || [],
+                    Contact : GetContactData.outData.Contact || {},
                  })
             }
         }).catch(err => console.log(err))
@@ -71,13 +73,13 @@ export const Home =({ onUserLogOut })=>{
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='medkit' size={size} color={color} />}}/>
                 <Tab.Screen 
                     name='Premiums' 
-                    component={ Test }
+                    component={ PremiumView }
                     options={{
                         tabBarBadge: formatBadge(ContactData?.Premiums?.length ?? 0 ),
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='dollar' size={size} color={color} />}}/>
                 <Tab.Screen 
                     name='Profile' 
-                    component={ Test }
+                    component={ AccountDetail }
                     options={{
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='user' size={size} color={color} />}}/>
             </Tab.Group>
