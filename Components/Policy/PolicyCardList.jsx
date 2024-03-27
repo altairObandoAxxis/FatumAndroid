@@ -1,9 +1,9 @@
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import { PolicyCard } from './PolicyCard';
 import { useState } from 'react';
 
 
-export const PolicyCardList =({ dataSource })=>{
+export const PolicyCardList =({ dataSource, navigation })=>{
     const [ showing, setShowing   ] = useState(10);
 
     const onEndReached = ()=>{
@@ -21,8 +21,8 @@ export const PolicyCardList =({ dataSource })=>{
         onEndReachedThreshold={ 0.8 }
         onEndReached={ onEndReached }
         renderItem={
-            ({item}) => <View style={{ width:300, height: 160 }}>
+            ({item}) => <TouchableOpacity style={{ width:300, height: 160 }} onPress={()=> navigation.navigate('policyDetail', item)}>
                 <PolicyCard item={ item } />
-            </View>
+            </TouchableOpacity>
         }/>
 }

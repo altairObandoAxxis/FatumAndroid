@@ -1,6 +1,6 @@
 import { View, ImageBackground } from 'react-native';
-import { Icon, Text } from '@rneui/themed'
-import { getForegroundColor, getIconName } from '../../Util/StyleUtil'
+import { Icon, Text, useTheme } from '@rneui/themed'
+import { getForegroundColorList, getIconName } from '../../Util/StyleUtil'
 export const CardText=( props )=>(
 <Text style={{ color: 'white',fontSize: 18 }} {...props}>
     { props.children }
@@ -16,20 +16,30 @@ export const CardContainer=(props)=>(
     </View>
 )
 
-export const PolicyCard =({ item })=>(
+export const PolicyCard =({ item })=>{
+    const { theme } = useTheme();
+return (
 <ImageBackground 
     source={require('../../assets/cardBackground.png')}
     style={{  resizeMode:'contain', width:280, height: 160 }}
     imageStyle={{ borderRadius: 6 }}>
     <CardContainer>
         <CardRow>
-            <CardText> { item?.code ?? '' }</CardText> 
-            <CardText> { item && <Icon 
-                size={27} 
-                type='material-community' 
-                name={ getIconName(item.end) }
-                color={ getForegroundColor(item.end) } /> 
-            } </CardText> 
+            <View style={{ flex: 1, height: 30,justifyContent: 'center'  }}>
+                <CardText> { item?.code ?? '' }</CardText> 
+            </View>
+            <View style={{ 
+                backgroundColor: theme.colors.white, 
+                flexDirection:'row-reverse', 
+                height: 30, width: 33,
+                borderRadius: 25, }}>
+                <CardText style={{ justifyContent: 'center' }}> { item && <Icon 
+                    size={27} 
+                    type='material-community' 
+                    name={ getIconName(item.end) }
+                    color={ getForegroundColorList({ endDate: item.end, theme }) } /> 
+                } </CardText> 
+            </View>
         </CardRow>
         <CardRow>
             <CardText> { item ? (item.currency + ' ' +Number(item.insuredSum).toLocaleString()) : '' } </CardText>
@@ -37,4 +47,4 @@ export const PolicyCard =({ item })=>(
         </CardRow>
     </CardContainer>
 </ImageBackground>
-)
+)}

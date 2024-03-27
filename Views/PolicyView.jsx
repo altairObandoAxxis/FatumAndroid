@@ -2,11 +2,10 @@
 import { useTheme, Text } from '@rneui/themed';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyList, PolicyDetail } from '../Components/Policy';
-import { ProductForm, ProductList } from '../Components/Quote'
+import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
 import { Platform } from 'react-native';
 const Stack = createStackNavigator();
 
-const NewProduct =()=> <Text> New Product</Text>
 
 export const PolicyView =()=>{
     const { theme } = useTheme();
@@ -45,6 +44,20 @@ export const PolicyView =()=>{
                         headerTitle: Platform.OS == 'android' ? 'Products': '',
                         headerBackTitle: 'Products'
                         }} />
+                <Stack.Screen 
+                    name='productOptions'
+                    component={ ProductOptList }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Product Form': '',
+                        headerBackTitle: 'Product Form'
+                        }} />
+                <Stack.Screen 
+                    name='productOptionView'
+                    component={ ProductOptionView }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Product Options': '',
+                        headerBackTitle: 'Product Options'
+                        }} />                
             </Stack.Group>
             
             

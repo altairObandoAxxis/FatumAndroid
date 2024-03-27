@@ -1,10 +1,11 @@
-import { Button, Text } from '@rneui/themed';
+import { Button, LinearProgress, Text, useTheme } from '@rneui/themed';
 import { Alert, View } from 'react-native';
 import { WebView } from 'react-native-webview'
 import { useUserData } from '../../Util/UserContext';
 import { createRef, useState } from 'react';
 import { DoCmd } from '../../Api';
 
+const GenerateRandomId =()=> (Math.random()*new Date().getTime()).toString().substring(0,5);
 export const ProductForm =({ navigation, route })=>{
     const Product = route.params;
     if( !Product.config.SelfService){
@@ -19,6 +20,7 @@ export const ProductForm =({ navigation, route })=>{
     }
     const { config: { SelfService: { Quote: { mobileForm } }}} = Product;
     const { userData } = useUserData();
+    const { theme } = useTheme();
     const [ loading, setLoading ] = useState(false);
     const webview = createRef();
     const executeLogicForm = `
@@ -44,14 +46,21 @@ export const ProductForm =({ navigation, route })=>{
             }catch(error){
                 window.alert(error)
             }
-        }, 500)        
+        }, 100)        
         true
     `;
     const QuoteProduct = async ({ data })=>{
-        setLoading(true);
-        const QuotePortalProduct = await DoCmd({ data: 'QuotePortalProduct', data, token: userData.token });
-        
-        setLoading(false)
+        try {
+            setLoading(true);
+            const QuotePortalProduct = await DoCmd({ cmd: 'QuotePortalProduct', data, token: userData.token });
+            if(!QuotePortalProduct.ok)
+                throw QuotePortalProduct.msg;
+            navigation.navigate('productOptions', { Options: QuotePortalProduct.outData.map(item => ({...item, id: GenerateRandomId()  })) || [] });
+        } catch (error) {
+            Alert.alert('Quotation Error', error)
+        }finally{
+            setLoading(false);
+        }
     }
     const validateForm =()=>{
         const request = `window.ReactNativeWebView.postMessage(JSON.stringify(validateForm()))`;
@@ -60,11 +69,11 @@ export const ProductForm =({ navigation, route })=>{
     const onWebViewMessage=(message)=>{
         const formData = JSON.parse(message);
         if(!formData.valid){
-            Alert.alert('Form Error', formData.message)
+            Alert.alert('Product Configuration', 'Please check form')
             return;
         }
         // Call quote
-        QuoteProduct({ data: { jFormValues: formData.data, productCode: Product.code } });
+        QuoteProduct({ data: { jFormValues: {...formData.data, holderId: userData.contactId }, productCode: Product.code } });
     }
     setTimeout(() => {
         if( webview.current )
@@ -81,15 +90,19 @@ export const ProductForm =({ navigation, route })=>{
         backgroundColor: 'white'}}>
         
         <Text h3>{ Product.name }</Text>
-        <WebView 
-            ref={ webview }
-            style={{ flex: 1, marginBottom: 10 }}
-            originWhitelist={['*']}
-            source={{ html: mobileForm }}
-            javaScriptEnabled={ true }
-            onMessage={ event => onWebViewMessage(event.nativeEvent.data)} /> 
-        <Button onPress={ validateForm } disabled={ loading } loading={ loading }>
-            Submit
-        </Button>
+        { loading && <LinearProgress variant='indeterminate' color={ theme.colors.primary } /> }
+        { mobileForm && <>
+            <WebView 
+                ref={ webview }
+                style={{ flex: 1, marginBottom: 10 }}
+                originWhitelist={['*']}
+                source={{ html: mobileForm }}
+                javaScriptEnabled={ true }
+                onMessage={ event => onWebViewMessage(event.nativeEvent.data)} />
+            <Button onPress={ validateForm } disabled={ loading } loading={ loading } title={'Submit'} />
+            
+            </>
+        }
+        { !mobileForm && <Text h3> No Quotation form configured </Text>}
     </View>
 }

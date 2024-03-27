@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View } from 'react-native';
 import { Icon } from '@rneui/themed';
-import { GetStarted } from './GetStarted';
+import { GetStartedView } from './GetStarted';
 import { DoCmd } from '../Api/doCmd';
 import { useEffect, useState } from 'react';
 import { PolicyView } from './PolicyView';
@@ -57,7 +57,7 @@ export const Home =()=>{
             <Tab.Group>
                 <Tab.Screen 
                     name='Home' 
-                    component={ GetStarted }
+                    component={ GetStartedView }
                     options={{
                         headerTitle:'',
                         tabBarIcon:({size, color })=> <Icon type='font-awesome' name='home' size={size} color={color} />}}/>
