@@ -2,6 +2,7 @@
 import { useTheme, Text } from '@rneui/themed';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyList, PolicyDetail } from '../Components/Policy';
+import { ProductForm, ProductList } from '../Components/Quote'
 import { Platform } from 'react-native';
 const Stack = createStackNavigator();
 
@@ -20,8 +21,7 @@ export const PolicyView =()=>{
                     component={ PolicyList } 
                     options={{ 
                         headerShown: false,
-                    }}
-                    />
+                    }}/>
                 <Stack.Screen 
                     name='detail' 
                     component={ PolicyDetail }
@@ -29,17 +29,25 @@ export const PolicyView =()=>{
                         headerTitle: Platform.OS == 'android' ? 'My Policies': '',
                         headerBackTitle: 'My Policies'
                     }} />
+            </Stack.Group>
+            <Stack.Group>
                 <Stack.Screen 
                     name='newProduct'
-                    component={ NewProduct }
+                    component={ ProductList }
                     options={{ 
-                        headerTitle: Platform.OS == 'android' ? 'My Policies': '',
-                        headerBackTitle: 'My Policies'
-                        }}  />
+                        headerTitle: Platform.OS == 'android' ? 'Back': '',
+                        headerBackTitle: 'Back'
+                        }} />
+                <Stack.Screen 
+                    name='productForm'
+                    component={ ProductForm }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Products': '',
+                        headerBackTitle: 'Products'
+                        }} />
             </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                <Stack.Screen name='modalQuote' component={ PolicyDetail }/>
-            </Stack.Group>
+            
+            
         </Stack.Navigator>
     )
 }
