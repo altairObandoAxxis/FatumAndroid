@@ -7,7 +7,7 @@
     "icon": "./assets/FatumLogo.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/SplashFatum.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
