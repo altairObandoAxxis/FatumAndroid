@@ -2,9 +2,9 @@
   "expo": {
     "name": "Sis11MobileFatum",
     "slug": "Sis11MobileFatum",
-    "version": "11.0.4",
+    "version": "11.0.19",
     "orientation": "portrait",
-    "icon": "./assets/FatumLogo.jpg",
+    "icon": "./assets/adaptive-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/SplashFatum.png",
