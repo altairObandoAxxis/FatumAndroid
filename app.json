@@ -23,7 +23,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.axxissystems.sisosmobile"
+      "package": "com.axxissystems.sisosmobile",
+      "versionCode": 11
     },
     "extra": {
       "eas": {

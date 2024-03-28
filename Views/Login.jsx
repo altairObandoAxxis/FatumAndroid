@@ -12,8 +12,8 @@ export const Login =()=>{
     const emailRef = createRef();
     const passwordRef = createRef();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ email, setEmail ] = useState('fatumuat\\noel.obando@axxis-systems.com')
-    const [ passw, setPassw ] = useState('Axxis2021!')
+    const [ email, setEmail ] = useState('')
+    const [ passw, setPassw ] = useState('')
     const [ errorEmail, setErrorEmail ] = useState();
     const [ errorPass, setErrorPass ] = useState();
     const [appIsReady, setAppIsReady] = useState(false);
