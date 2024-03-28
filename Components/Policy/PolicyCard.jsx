@@ -33,12 +33,11 @@ return (
                 flexDirection:'row-reverse', 
                 height: 30, width: 33,
                 borderRadius: 25, }}>
-                <CardText style={{ justifyContent: 'center' }}> { item && <Icon 
+                <CardText style={{ justifyContent: 'center' }}> <Icon 
                     size={27} 
                     type='material-community' 
-                    name={ getIconName(item.end) }
-                    color={ getForegroundColorList({ endDate: item.end, theme }) } /> 
-                } </CardText> 
+                    name={ item && item!= null ? getIconName(item.end) : 'shield-check-outline' }
+                    color={ item && item!= null ? getForegroundColorList({ endDate: item.end, theme }) : theme.colors.primary } />  </CardText> 
             </View>
         </CardRow>
         <CardRow>

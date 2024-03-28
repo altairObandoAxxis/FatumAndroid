@@ -33,6 +33,7 @@ export const AccountDetail =({ navigation })=>{
         // Update cache data.
         setUserData({...userData, Contact: { ...userData.Contact, email: email, phone: phone }});
         console.log('Updated');
+        setUpdating(false);
     }
     return <>
     <View style={{ 

@@ -1,17 +1,22 @@
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect,useCallback, createRef } from 'react';
 import { Button, Input } from '@rneui/themed'
 import { ImageBackground, Image, View, Dimensions, Alert, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'
 import { DoLogin } from '../Api/login';
 import { useUserData } from '../Util/UserContext';
+import * as SplashScreen from 'expo-splash-screen';
+
+
+SplashScreen.preventAutoHideAsync();
 export const Login =()=>{
     const screenWidth = Dimensions.get('screen').width;
     const emailRef = createRef();
     const passwordRef = createRef();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ email, setEmail ] = useState()
-    const [ passw, setPassw ] = useState()
+    const [ email, setEmail ] = useState('fatumuat\\noel.obando@axxis-systems.com')
+    const [ passw, setPassw ] = useState('Axxis2021!')
     const [ errorEmail, setErrorEmail ] = useState();
     const [ errorPass, setErrorPass ] = useState();
+    const [appIsReady, setAppIsReady] = useState(false);
     const userData = useUserData();
     const ValidateLogin =()=>{
         if( !email || email.trim() == ''){
@@ -49,8 +54,37 @@ export const Login =()=>{
         hideSubscription.remove();
         };
     }, []);
+    useEffect(() => {
+        async function prepare() {
+          try {
+            // Show splash screen for welcome to the app
+            await new Promise(resolve => setTimeout(resolve, 1500));
+          } catch (e) {
+            console.warn(e);
+          } finally {
+            // Tell the application to render
+            setAppIsReady(true);
+          }
+        }
+    
+        prepare();
+      }, []);
+      const onLayoutRootView = useCallback(async () => {
+        if (appIsReady) {
+          // This tells the splash screen to hide immediately! If we call this after
+          // `setAppIsReady`, then we may see a blank screen while the app is
+          // loading its initial state and rendering its first pixels. So instead,
+          // we hide the splash screen once we know the root view has already
+          // performed layout.
+          await SplashScreen.hideAsync();
+        }
+      }, [appIsReady]);
+    
+      if (!appIsReady) {
+        return null;
+      }
 
-    return <View style={{ flex: 1, width: screenWidth, justifyContent: 'center' }}>
+    return <View style={{ flex: 1, width: screenWidth, justifyContent: 'center' }} onLayout={ onLayoutRootView }>
         <ImageBackground 
             source={require('../assets/landing.png')} 
             resizeMode='cover' 
