@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "354166254936",
+    "project_id": "sis11mobilenotifications",
+    "storage_bucket": "sis11mobilenotifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354166254936:android:e4bf354993faa1c418892d",
+        "android_client_info": {
+          "package_name": "com.axxissystems.sisosmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoVQeOEOstqDnHDoERaUozTpqugyLqlVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,7 +24,8 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.axxissystems.sisosmobile",
-      "versionCode": 11
+      "versionCode": 11,
+      "googleServicesFile": "./google-services.json"
     },
     "extra": {
       "eas": {
