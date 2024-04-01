@@ -2,9 +2,9 @@
   "expo": {
     "name": "Sis11MobileFatum",
     "slug": "Sis11MobileFatum",
-    "version": "11.0.19",
+    "version": "11.0.20",
     "orientation": "portrait",
-    "icon": "./assets/adaptive-icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/SplashFatum.png",
@@ -25,10 +25,7 @@
       },
       "package": "com.axxissystems.sisosmobile",
       "versionCode": 11,
-      "googleServicesFile": "./google-services.json",
-      "notification": {
-        "icon": "./assets/notificationIcon.png"
-      }
+      "googleServicesFile": "./google-services.json"
     },
     "extra": {
       "eas": {
