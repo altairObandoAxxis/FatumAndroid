@@ -25,7 +25,10 @@
       },
       "package": "com.axxissystems.sisosmobile",
       "versionCode": 11,
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "notification": {
+        "icon": "./assets/notificationIcon.png"
+      }
     },
     "extra": {
       "eas": {

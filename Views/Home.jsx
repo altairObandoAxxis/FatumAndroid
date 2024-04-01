@@ -15,6 +15,7 @@ import { Platform } from 'react-native';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import { SaveNotificationToken } from '../Api/notifications';
 
 const Tab = createBottomTabNavigator();
 
@@ -96,20 +97,20 @@ export const Home =()=>{
     },[userData.token])
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    
-        //notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-        //  console.log(notification);
-        //});
-    
-       //responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-       //  console.log(response);
-       //});
-    
-       //return () => {
-       //  Notifications.removeNotificationSubscription(notificationListener.current);
-       //  Notifications.removeNotificationSubscription(responseListener.current);
-       //};
     }, []);
+    useEffect(()=>{
+      if( Platform.OS == 'ios')
+        return; 
+      if(!expoPushToken || expoPushToken == '')
+        return;
+      SaveNotificationToken({ 
+        userToken: userData.token,
+        mobileToken: expoPushToken,
+        mobileInfo: `${Device.brand} ${Device.modelName}`,
+        platform: Platform.OS.toUpperCase(),
+        user: userData.email,
+      }).then( response => console.log(response))
+    },[expoPushToken])
 
     return <View style={{ paddingTop: insets.top, flex: 1, backgroundColor: 'white' }}>
         <Tab.Navigator 
