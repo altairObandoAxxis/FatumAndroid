@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useCallback, createRef } from 'react';
-import { Button, Input } from '@rneui/themed'
+import { Button, Input, Text } from '@rneui/themed'
 import { ImageBackground, Image, View, Dimensions, Alert, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'
 import { DoLogin } from '../Api/login';
 import { useUserData } from '../Util/UserContext';
@@ -12,8 +12,8 @@ export const Login =()=>{
     const emailRef = createRef();
     const passwordRef = createRef();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ email, setEmail ] = useState('')
-    const [ passw, setPassw ] = useState('')
+    const [ email, setEmail ] = useState('equity\\noel.obando@axxis-systems.com')
+    const [ passw, setPassw ] = useState('Axxis2024!!!')
     const [ errorEmail, setErrorEmail ] = useState();
     const [ errorPass, setErrorPass ] = useState();
     const [appIsReady, setAppIsReady] = useState(false);
@@ -97,7 +97,7 @@ export const Login =()=>{
                 behavior={ Platform.OS == 'ios' ? 'padding' : 'height' }
                 style={{ flex: 1 }}>
                 <Image
-                    source={require('../assets/fatum.png')} 
+                    source={require('../assets/Equity.png')} 
                     style={{ 
                         resizeMode:'contain', 
                         alignSelf:'center', 

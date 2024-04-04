@@ -20,7 +20,7 @@ export const PolicyCard =({ item })=>{
     const { theme } = useTheme();
 return (
 <ImageBackground 
-    source={require('../../assets/cardBackground.png')}
+    source={require('../../assets/cardBackground.jpg')}
     style={{  resizeMode:'contain', width:280, height: 160 }}
     imageStyle={{ borderRadius: 6 }}>
     <CardContainer>

@@ -11,7 +11,8 @@ const Stack = createStackNavigator();
 
 export const GetStarted =({ navigation })=>{
     const { userData, setUserData } = useUserData();
-    const [ policies, setPolicies ] = useState([])
+    const [ policies, setPolicies ] = useState([]);
+    const { theme } = useTheme()
     const fetchUserData =()=>{
         DoCmd({
             cmd: 'LoadEntities', 
@@ -35,12 +36,11 @@ export const GetStarted =({ navigation })=>{
             source={require('../assets/landing.png')} 
             resizeMode='cover'
             style={{ flex: 1 }} >
-            <View style={{ display: 'flex', flexDirection: 'row', padding: 10, justifyContent: 'space-between'  }}>
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: 50, marginTop: 5 }}>
                 <Image
-                    source={require('../assets/fatum.png')} 
-                    style={{ resizeMode:'contain', alignSelf:'center', width:100, height: 40 }} />
-                <Icon type='font-awesome' name='power-off' color = '#f3712a' style={{ marginRight: 10 }} onPress={ ()=>{
-                    console.log('logout');
+                    source={require('../assets/Equity.png')} 
+                    style={{ resizeMode:'stretch', width:60, height: 60 }} />
+                <Icon type='font-awesome' name='power-off' color ={ theme.colors.primary } style={{ marginRight: 10, marginTop: 10 }} onPress={ ()=>{
                     setUserData({...userData, token: null });
                 } } />
             </View>
