@@ -7,6 +7,7 @@ import { DoCmd } from '../Api/doCmd';
 import { useState, useEffect } from 'react';
 import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
 import { PolicyDetail } from '../Components/Policy';
+import { ChangeList } from '../Components/Changes';
 const Stack = createStackNavigator();
 
 export const GetStarted =({ navigation })=>{
@@ -19,7 +20,7 @@ export const GetStarted =({ navigation })=>{
             data:{ 
                 entity: 'LifePolicy',
                 filter: `holderId=${userData.contactId} ORDER BY id DESC `,
-                fields: 'id,lob,code,currency,[start],[end], active, insuredSum'
+                fields: 'id,lob,code,currency,[start],[end], active, insuredSum,productCode'
             }, 
             token: userData.token
          })
@@ -27,8 +28,20 @@ export const GetStarted =({ navigation })=>{
             setPolicies((LoadEntities.outData || [] ))
         }).catch(err => console.log(err))
     }
+    const getPortalProducts = async () => {
+        const GetPortalProducts = await DoCmd({ cmd: 'GetPortalProducts', data:{}, token: userData.token });
+        const Products = GetPortalProducts.outData.map(product => ({
+            code: product.code,
+            name: product.name,
+            config: JSON.parse(product.configJson),
+        }));
+        if( Products.length == 0)
+            return;
+        setUserData({...userData, Products });
+    }
     useEffect(()=>{
-        fetchUserData()
+        fetchUserData();
+        getPortalProducts();
     },[userData.contactId]);
 
     return <View style={{ flex: 1, backgroundColor: 'white'}}>
@@ -115,6 +128,15 @@ export const GetStartedView =()=>{
                     headerTitle: Platform.OS == 'android' ? 'Product Options': '',
                     headerBackTitle: 'Product Options'
                     }} />                
+        </Stack.Group>
+        <Stack.Group>
+            <Stack.Screen 
+                name='newChange' 
+                component={ ChangeList }
+                options={{ 
+                    headerTitle: Platform.OS == 'android' ? 'Policy Detail': '',
+                    headerBackTitle: 'Policy Detail'
+                }} />
         </Stack.Group>
         </Stack.Navigator>)
 }

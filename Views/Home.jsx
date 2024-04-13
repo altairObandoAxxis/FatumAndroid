@@ -37,14 +37,15 @@ Notifications.setNotificationHandler({
 async function registerForPushNotificationsAsync() {
     let token;
   
-    if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('fatum', {
-        name: 'fatum',
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: '#FF231F7C',
-      });
-    }
+    if (Platform.OS != 'android')
+      return;
+
+    Notifications.setNotificationChannelAsync('equity', {
+      name: 'equity',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
   
     if (Device.isDevice) {
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -60,7 +61,7 @@ async function registerForPushNotificationsAsync() {
       token = await Notifications.getExpoPushTokenAsync({
         projectId: Constants.expoConfig.extra.eas.projectId,
       });
-      console.log(token.data);
+      //console.log(token.data);
     } else {
       alert('Must use physical device for Push Notifications');
     }

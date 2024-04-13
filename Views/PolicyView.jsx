@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyList, PolicyDetail } from '../Components/Policy';
 import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
 import { Platform } from 'react-native';
+import { ChangeList } from '../Components/Changes';
 const Stack = createStackNavigator();
 
 
@@ -59,8 +60,15 @@ export const PolicyView =()=>{
                         headerBackTitle: 'Product Options'
                         }} />                
             </Stack.Group>
-            
-            
+            <Stack.Group>
+                <Stack.Screen 
+                    name='newChange' 
+                    component={ ChangeList }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Policy Detail': '',
+                        headerBackTitle: 'Policy Detail'
+                    }} />
+            </Stack.Group>
         </Stack.Navigator>
     )
 }

@@ -3,7 +3,8 @@ import { DoCmd } from "./doCmd"
 export const SaveNotificationToken = async ({ userToken, mobileToken, mobileInfo, platform, user })=>{
     // Validate if the configuration exists
     const GetConfig = await DoCmd({ cmd:'GetConfig', data:{ path: '$.Mobile.android' }, token: userToken });
-    
+    if( !GetConfig.outData)
+        return false;
     if( !GetConfig.outData.deviceList ){
         console.log('Device list not configured');
         return false;

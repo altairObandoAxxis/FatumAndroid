@@ -12,7 +12,7 @@ export const PolicyList =({ navigation })=>{
     const searchBar = createRef();
     // Set data
     useEffect(()=>{
-        setPolicies(userData.Policies);
+        setPolicies(userData.Policies.sort( (a,b)=> a.active == b.active ? 0 : a.active ? -1 : 1));
     },[userData.Policies])
     // Filter policies.
     useEffect(()=>{

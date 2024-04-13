@@ -1,7 +1,7 @@
 import { Platform, View } from 'react-native'
-import { ListItem, Switch, Text, useTheme } from '@rneui/themed';
+import { Button, ListItem, Switch, Text, useTheme } from '@rneui/themed';
 
-export const PolicyDetail = ({ route })=> {
+export const PolicyDetail = ({ navigation, route })=> {
     const Policy = route.params;
     const { theme } = useTheme();
     const subTitleColor = Platform.OS == 'android' ? theme.colors.greyOutline : theme.colors.grey0;
@@ -50,5 +50,12 @@ export const PolicyDetail = ({ route })=> {
                 <Text>{ Number(Policy.insuredSum).toLocaleString() } { Policy.currency }</Text>
             </ListItem.Content>
         </ListItem>
+        <ListItem >
+            <ListItem.Content>
+                <Text style={{ fontWeight:'100', color: subTitleColor }}>Actions </Text>
+                <Button title={'Change Request'} type='link' onPress={ ()=> navigation.navigate('newChange', Policy )}/>
+            </ListItem.Content>
+        </ListItem>
+        
     </View>
 }

@@ -44,10 +44,10 @@ export const Login =()=>{
     const [keyboardStatus, setKeyboardStatus] = useState(false);
     useEffect(() => {
         const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-        setKeyboardStatus(true);
+          setKeyboardStatus(true);
         });
         const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-        setKeyboardStatus(false);
+          setKeyboardStatus(false);
         });    
         return () => {
         showSubscription.remove();
@@ -113,6 +113,7 @@ export const Login =()=>{
                     errorMessage={ errorEmail }
                     value={ email }
                     leftIcon={{ type: 'font-awesome', name: 'user', color:'gray' }}
+                    style={{ height: '48dp' }}
                     onChangeText={ value => setEmail(value )}/>
                 <Input 
                     name='password'
@@ -122,6 +123,7 @@ export const Login =()=>{
                     errorMessage={ errorPass }
                     leftIcon={{ type: 'font-awesome', name: 'lock', color:'gray' }}
                     value={ passw }
+                    style={{ height: '48dp' }}
                     onChangeText={ value => setPassw( value )}/>
                 <Button 
                     title="Sign In" onPress={ ValidateLogin }

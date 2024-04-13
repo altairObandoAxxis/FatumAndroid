@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useUserData } from '../../Util/UserContext';
-import { DoCmd } from '../../Api'
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { Icon, ListItem, useTheme, Text, LinearProgress } from '@rneui/themed';
 export const ProductList=({ navigation })=>{
@@ -9,17 +8,7 @@ export const ProductList=({ navigation })=>{
     const { userData } = useUserData();
     const { theme } = useTheme();
     const getPortalProducts = async () => {
-        setLoading(true);
-        const GetPortalProducts = await DoCmd({ cmd: 'GetPortalProducts', data:{}, token: userData.token });
-        const Products = GetPortalProducts.outData.map(product => ({
-            code: product.code,
-            name: product.name,
-            config: JSON.parse(product.configJson),
-        }));
-        if( Products.length == 0)
-            return;
-        setPortalProducts( Products );
-        setLoading(false);
+       setPortalProducts(userData.Products || []);
     }
     useEffect(()=>{ getPortalProducts() }, []);
     return (
