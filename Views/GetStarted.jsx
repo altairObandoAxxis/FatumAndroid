@@ -1,4 +1,4 @@
-import { View, Image, ImageBackground, Platform } from 'react-native';
+import { View, Image, ImageBackground, Platform, ScrollView } from 'react-native';
 import { Button, Text, Icon, useTheme } from '@rneui/themed'
 import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyCardList } from '../Components/Policy/PolicyCardList';
@@ -51,7 +51,7 @@ export const GetStarted =({ navigation })=>{
         console.log('Refresh by token: ' + userData.refreshId )
     },[ userData.refreshId ])
 
-    return <View style={{ flex: 1, backgroundColor: 'white'}}>
+    return <ScrollView style={{ flex: 1, backgroundColor: 'white'}}>
         <ImageBackground 
             source={require('../assets/landing.png')} 
             resizeMode='cover'
@@ -75,13 +75,13 @@ export const GetStarted =({ navigation })=>{
                 <Text h3>
                         Protect your next vacation in 3 simple steps
                 </Text>
-                <Text style={{ padding: 5, fontWeight: '100', fontSize: 18 }}>
+                <Text style={{ padding: 5, fontWeight: '100', fontSize: 15 }}>
                     Vacation insurance is an important consideration during the leisure travel planning process, and it covers the items most critical for individuals on vacation, including emergency assistance, medical coverage, cancellation, travel delays and more
                 </Text>
                 <Button title='Get Started >' onPress={ ()=> navigation.navigate('newProduct')} />
             </View>            
         </ImageBackground>        
-    </View>
+    </ScrollView>
 }
 export const GetStartedView =()=>{
     const { theme } = useTheme();

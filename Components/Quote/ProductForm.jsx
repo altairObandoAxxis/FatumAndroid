@@ -46,7 +46,7 @@ export const ProductForm =({ navigation, route })=>{
             }catch(error){
                 window.alert(error)
             }
-        }, 100)        
+        }, 1500)        
         true
     `;
     const QuoteProduct = async ({ data })=>{

@@ -1,6 +1,6 @@
 import { Button, Input, Text } from '@rneui/themed';
 import { useState } from 'react';
-import { StyleSheet, View, Dimensions, Alert } from 'react-native'
+import { StyleSheet, View, Dimensions, Alert, ScrollView } from 'react-native'
 import { useUserData } from '../../Util/UserContext';
 import { DoCmd } from '../../Api';
 
@@ -29,7 +29,7 @@ export const ChangeDetail=({ navigation, route })=>{
             setLoading(!loading);
         }
     }
-    return <View style={{ ...styles.container, height: screenHeight }}>
+    return <ScrollView style={{ ...styles.container, height: screenHeight }}>
         <Text style={ styles.sectionTitle }> Options </Text>
         <View style={ styles.formContainer }>
             <Input value={ note } onChangeText={ newValue => setNote(newValue )} placeholder='Optional manual code'/>
@@ -75,7 +75,7 @@ export const ChangeDetail=({ navigation, route })=>{
                 <Text>{ formatNumber(Detail?.Bill?.anualTotal ?? '') }</Text>
             </View>
         </View>
-    </View>
+    </ScrollView>
 }
 
 const styles = StyleSheet.create({

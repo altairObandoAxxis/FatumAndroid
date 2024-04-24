@@ -1,6 +1,6 @@
 import { Button, Icon, ListItem, Text, useTheme } from '@rneui/themed';
 import { useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, ScrollView } from 'react-native';
 import { DoCmd } from '../../Api';
 import { useUserData } from '../../Util/UserContext';
 
@@ -27,7 +27,7 @@ export const ProductOptionView =({ route, navigation })=>{
     }
 
     return (
-        <View style={{ 
+        <ScrollView style={{ 
             display: 'flex', 
             flex: 1,
             flexDirection: 'column', 
@@ -77,5 +77,5 @@ export const ProductOptionView =({ route, navigation })=>{
                         loading={ loading }/>
                 </ListItem.Content>
             </ListItem>
-        </View>)
+        </ScrollView>)
 }
