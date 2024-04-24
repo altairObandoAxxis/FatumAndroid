@@ -29,6 +29,12 @@ export const ClaimList =({ navigation }) =>{
             <Text h2 h2Style={{ fontWeight: 'bold', flex: 1 }}>
                 My Claims
             </Text>
+            <Icon 
+                name='pluscircleo' 
+                type='antdesign' 
+                color={theme.colors.primary}  
+                style={{ flex: 1 }}
+                onPress={ ()=> navigation.navigate('newIssue')}/>
         </View>
         <SearchBar
             ref={ searchBar }

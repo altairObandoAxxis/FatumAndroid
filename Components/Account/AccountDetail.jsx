@@ -1,4 +1,4 @@
-import { Linking, Platform, TouchableOpacity, View } from 'react-native'
+import { Linking, Platform, TouchableOpacity, View, ScrollView } from 'react-native'
 import { Button, Input, ListItem, Switch, Text, useTheme } from '@rneui/themed';
 import { useUserData } from '../../Util/UserContext'
 import { useState } from 'react';
@@ -36,7 +36,7 @@ export const AccountDetail =({ navigation })=>{
         setUpdating(false);
     }
     return <>
-    <View style={{ 
+    <ScrollView style={{ 
         flex: 1, 
         backgroundColor: 'white', 
         flexDirection: 'column',
@@ -112,6 +112,6 @@ export const AccountDetail =({ navigation })=>{
                 <ListItem.Chevron />
             </ListItem>
         </TouchableOpacity>
-    </View>
+    </ScrollView>
     </>
 }

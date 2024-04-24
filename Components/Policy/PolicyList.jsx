@@ -4,8 +4,9 @@ import { createRef, useEffect, useState } from 'react';
 import { Icon, SearchBar, Text, useTheme } from '@rneui/themed';
 import { PolicyListItem } from './PolicyListItem';
 
-export const PolicyList =({ navigation })=>{
-    const { userData } = useUserData();
+export const PolicyList =({ route, navigation })=>{
+    const { userData, setUserData } = useUserData();
+    let isSelectPolicy = route?.params?.isSelectPolicy ?? false;
     const [ policies, setPolicies ] = useState([]);
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme();
@@ -16,14 +17,21 @@ export const PolicyList =({ navigation })=>{
     },[userData.Policies])
     // Filter policies.
     useEffect(()=>{
+        let pols = isSelectPolicy ? userData.Policies.filter(item => item.active) : userData.Policies;
         if(!filter || filter == ''){
-            setPolicies(userData.Policies);
+            setPolicies(pols);
             return
         }
-        let filteredPolicies = (userData.Policies || [])
+        let filteredPolicies = (pols || [])
             .filter(item => (item.code || Number(item.id).toString()).toLowerCase().includes( filter.toLowerCase() ));
         setPolicies(filteredPolicies);
-    },[filter])
+    },[filter]);
+    const onPolicySelect=(policy)=>{
+        if(!isSelectPolicy)
+            return;
+        setUserData({...userData, Policy: policy });
+        navigation.goBack();
+    }
     return <>
         <View style={{ display: 'flex', flexDirection:'row', backgroundColor: 'white', padding: 10}}>
             <Text h2 h2Style={{ fontWeight: 'bold', flex: 1}}>
@@ -49,7 +57,12 @@ export const PolicyList =({ navigation })=>{
             keyExtractor={ item => item.id }
             style={{ backgroundColor: theme.colors.white }}
             contentContainerStyle={{ backgroundColor: theme.colors.white }}
-            renderItem={({item})=> <PolicyListItem item={item} onItemPress={ ()=> navigation.navigate('detail', item )}  /> }
+            renderItem={({item})=> <PolicyListItem item={item} onItemPress={ ()=> {
+                if(!isSelectPolicy)
+                    navigation.navigate('detail', item )
+                else
+                    onPolicySelect(item);
+            }}  /> }
      />
     </>
 }
