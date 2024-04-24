@@ -5,9 +5,9 @@ import { PolicyCardList } from '../Components/Policy/PolicyCardList';
 import { useUserData } from '../Util/UserContext'
 import { DoCmd } from '../Api/doCmd';
 import { useState, useEffect } from 'react';
-import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
+import { ProductForm, ProductList, ProductOptList, ProductOptionView, QuoteCompleted } from '../Components/Quote'
 import { PolicyDetail } from '../Components/Policy';
-import { ChangeList } from '../Components/Changes';
+import { ChangeDetail, ChangeForm, ChangeList, ChangeStatus } from '../Components/Changes';
 const Stack = createStackNavigator();
 
 export const GetStarted =({ navigation })=>{
@@ -43,6 +43,13 @@ export const GetStarted =({ navigation })=>{
         fetchUserData();
         getPortalProducts();
     },[userData.contactId]);
+    useEffect(()=>{
+        if( typeof userData.refreshId === 'undefined' || userData.refreshId == null)
+            return; 
+        fetchUserData();
+        getPortalProducts();
+        console.log('Refresh by token: ' + userData.refreshId )
+    },[ userData.refreshId ])
 
     return <View style={{ flex: 1, backgroundColor: 'white'}}>
         <ImageBackground 
@@ -127,7 +134,14 @@ export const GetStartedView =()=>{
                 options={{ 
                     headerTitle: Platform.OS == 'android' ? 'Product Options': '',
                     headerBackTitle: 'Product Options'
-                    }} />                
+                    }} />
+            <Stack.Screen 
+                 name='quoteCompleted'
+                 component={QuoteCompleted}
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Completed': '',
+                    headerBackTitle: 'Completed'
+                 }}/>   
         </Stack.Group>
         <Stack.Group>
             <Stack.Screen 
@@ -137,6 +151,28 @@ export const GetStartedView =()=>{
                     headerTitle: Platform.OS == 'android' ? 'Policy Detail': '',
                     headerBackTitle: 'Policy Detail'
                 }} />
+            <Stack.Screen
+                    name='changeForm'
+                    component={ ChangeForm }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Quote': '',
+                        headerBackTitle: 'Quote'
+                    }} />
+                <Stack.Screen
+                    name='changeDetail'
+                    component={ ChangeDetail }
+                    options={{
+                        headerTitle: Platform.OS == 'android' ? 'Cost of Changes': '',
+                        headerBackTitle: 'Cost of Changes'
+                    }}
+                />
+                <Stack.Screen 
+                 name='changeStatus'
+                 component={ ChangeStatus }
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Result': '',
+                    headerBackTitle: 'Result'
+                }}/>
         </Stack.Group>
         </Stack.Navigator>)
 }

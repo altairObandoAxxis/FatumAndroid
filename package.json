@@ -9,12 +9,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-picker/picker": "^2.7.5",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.8",
-    "dayjs": "^1.11.10",
     "expo": "^50.0.14",
     "expo-constants": "~15.4.5",
     "expo-device": "~5.9.3",
@@ -25,9 +25,9 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-gesture-handler": "~2.14.0",
+    "react-native-neat-date-picker": "^1.4.12",
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
-    "react-native-ui-datepicker": "^2.0.2",
     "react-native-webview": "13.6.4"
   },
   "devDependencies": {

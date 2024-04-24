@@ -17,8 +17,6 @@ export const ChangeListItem=({ change, onItemPress })=>{
 
 const Styles = StyleSheet.create({
     itemContainer: {
-        flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
+        flex: 1
     }
 })

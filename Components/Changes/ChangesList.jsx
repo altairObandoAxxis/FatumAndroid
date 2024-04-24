@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useUserData } from '../../Util/UserContext';
 import { FlatList } from 'react-native';
-import { useTheme } from '@rneui/themed';
+import { Card, useTheme } from '@rneui/themed';
 import { ChangeListItem } from './ChangeListItem';
 
 const MobileChanges = [
@@ -26,12 +26,14 @@ export const ChangeList =({ navigation, route })=>{
         setAvailableChanges();
     },[]);
     const onItemPress =({ item })=>{
-        //navigation.navigate('changeForm',{ change: item, Policy });
+        navigation.navigate('changeForm',{ change: item, Policy })
     }
-    return <FlatList
+    return <Card containerStyle={{ marginTop: 25 }}>
+        <FlatList
         data={ changes }
         keyExtractor={ item => item.code }
         style={{ backgroundColor: theme.colors.white }}
         contentContainerStyle={{ backgroundColor: theme.colors.white }}
-        renderItem={({ item }) => <ChangeListItem change={ item } onItemPress={ onItemPress } /> } />
+        renderItem={({ item }) => <ChangeListItem change={ item } onItemPress={ ()=> onItemPress({ item }) } /> } />
+    </Card>
 }

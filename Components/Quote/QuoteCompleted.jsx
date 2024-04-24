@@ -1,14 +1,14 @@
 import { Button, Icon, Text, useTheme } from '@rneui/themed'
 import { View, StyleSheet } from 'react-native';
 
-export const ChangeStatus =({ route, navigation })=>{
-    const Result = route.params;
+export const QuoteCompleted=({ route, navigation })=>{
+    const [newPolicy] = route.params;
     const { theme } = useTheme();
     return <View style={ style.container }>
         <View style={ style.informationContainer }>
             <Icon name='checkmark-circle' type='ionicon' size={ 70 } color={ theme.colors.success }/>
-            <Text h1>Saved Policy Change </Text>
-            <Text h4>Change Number is { Result.id }</Text>
+            <Text h1>Successfully Saved</Text>
+            <Text h4>Quote number is { newPolicy.id }</Text>
         </View>
         <View style={ style.buttonContainer }>
             <Button 
@@ -41,5 +41,4 @@ const style = StyleSheet.create({
         width: '100%',
         justifyContent: 'center'
     }
-
 })

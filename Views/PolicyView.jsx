@@ -2,9 +2,9 @@
 import { useTheme, Text } from '@rneui/themed';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyList, PolicyDetail } from '../Components/Policy';
-import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
+import { ProductForm, ProductList, ProductOptList, ProductOptionView, QuoteCompleted } from '../Components/Quote'
 import { Platform } from 'react-native';
-import { ChangeList } from '../Components/Changes';
+import { ChangeDetail, ChangeForm, ChangeList, ChangeStatus } from '../Components/Changes';
 const Stack = createStackNavigator();
 
 
@@ -58,16 +58,45 @@ export const PolicyView =()=>{
                     options={{ 
                         headerTitle: Platform.OS == 'android' ? 'Product Options': '',
                         headerBackTitle: 'Product Options'
-                        }} />                
+                        }} />
+                <Stack.Screen 
+                 name='quoteCompleted'
+                 component={QuoteCompleted}
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Completed': '',
+                    headerBackTitle: 'Completed'
+                 }}/>           
             </Stack.Group>
             <Stack.Group>
                 <Stack.Screen 
                     name='newChange' 
                     component={ ChangeList }
                     options={{ 
-                        headerTitle: Platform.OS == 'android' ? 'Policy Detail': '',
-                        headerBackTitle: 'Policy Detail'
+                        headerTitle: Platform.OS == 'android' ? 'Changes': '',
+                        headerBackTitle: 'Changes'
                     }} />
+                <Stack.Screen
+                    name='changeForm'
+                    component={ ChangeForm }
+                    options={{ 
+                        headerTitle: Platform.OS == 'android' ? 'Quote': '',
+                        headerBackTitle: 'Quote'
+                    }} />
+                <Stack.Screen
+                    name='changeDetail'
+                    component={ ChangeDetail }
+                    options={{
+                        headerTitle: Platform.OS == 'android' ? 'Cost of Changes': '',
+                        headerBackTitle: 'Cost of Changes'
+                    }}
+                />
+                <Stack.Screen 
+                 name='changeStatus'
+                 component={ ChangeStatus }
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Result': '',
+                    headerBackTitle: 'Result'
+                }}/>
             </Stack.Group>
         </Stack.Navigator>
     )
