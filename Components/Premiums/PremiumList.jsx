@@ -10,12 +10,9 @@ export const PremiumList =({ navigation })=>{
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme();
     const searchBar = createRef();
-    // Set data
-    useEffect(()=>{
-        setPremiums(userData.Premiums);
-    },[userData.Premiums])
     // Filter Premiums.
     useEffect(()=>{
+        setPremiums([]);
         if(!filter || filter == ''){
             setPremiums(userData.Premiums);
             return
@@ -23,7 +20,8 @@ export const PremiumList =({ navigation })=>{
         let filteredPremiums = (userData.Premiums || [])
             .filter(item => (item.policyCode || Number(item.lifePolicyId).toString()).toLowerCase().includes( filter.toLowerCase() ));
         setPremiums(filteredPremiums);
-    },[filter])
+    },[userData.refreshId, filter]);
+
     return <>
         <View style={{ display: 'flex', flexDirection:'row', backgroundColor: 'white', padding: 10}}>
             <Text h2 h2Style={{ fontWeight: 'bold', flex: 1}}>
@@ -44,6 +42,6 @@ export const PremiumList =({ navigation })=>{
             style={{ backgroundColor: theme.colors.white }}
             contentContainerStyle={{ backgroundColor: theme.colors.white }}
             renderItem={({item})=> <PremiumListItem item={item} onItemPress={ ()=> navigation.navigate('detail', item )}  /> }
-     />
+        />
     </>
 }

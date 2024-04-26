@@ -1,12 +1,16 @@
-import { Platform, View, SafeAreaView } from 'react-native'
-import { ListItem, Text, useTheme } from '@rneui/themed';
+import { Platform, View, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Button, ListItem, Text, useTheme } from '@rneui/themed';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useEffect } from 'react';
 
-export const PremiumDetail =({ route })=>{
+export const PremiumDetail =({ route, navigation })=>{
     const Premium = route.params;
     const { theme } = useTheme();
     const subTitleColor = Platform.OS == 'android' ? theme.colors.greyOutline : theme.colors.grey0;
     const estado = Number(Premium.amountPaid || -1) >= Number(Premium.amount || 0 ) ? (Premium.payDate || '').split('T',1).pop() : 'Not Paid';
+    const payed  = Number(Premium.amountPaid || -1) >= Number(Premium.amount || 0 );
+    const onPayPress =()=> navigation.navigate('paymentOptions', Premium)
+    
     return <SafeAreaView style={{ flex: 1 }}>
     <ScrollView style={{ 
         flex: 1, 
@@ -73,6 +77,12 @@ export const PremiumDetail =({ route })=>{
             <ListItem.Content>
                 <Text style={{ fontWeight:'100', color: subTitleColor }}>Policy Id: </Text>
                 <Text>{ Premium.lifePolicyId }</Text>
+            </ListItem.Content>
+        </ListItem>
+        <ListItem bottomDivider>
+            <ListItem.Content>
+                <Text style={{ fontWeight:'100', color: subTitleColor }}>Actions: </Text>
+                <Button title='$ Pay' onPress={ onPayPress } disabled={ payed } />
             </ListItem.Content>
         </ListItem>
     </ScrollView>
