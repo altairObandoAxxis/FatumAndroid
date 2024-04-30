@@ -38,8 +38,8 @@ async function registerForPushNotificationsAsync() {
     let token;
   
     if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('fatum', {
-        name: 'fatum',
+      Notifications.setNotificationChannelAsync('demo', {
+        name: 'demo',
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: '#FF231F7C',
@@ -63,10 +63,11 @@ async function registerForPushNotificationsAsync() {
       console.log(token.data);
     } else {
       alert('Must use physical device for Push Notifications');
+      return '';
     }
   
     return token.data;
-  }
+}
 
 export const Home =()=>{
     const insets = useSafeAreaInsets();

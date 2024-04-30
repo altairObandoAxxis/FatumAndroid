@@ -18,7 +18,7 @@ export const ProductList=({ navigation })=>{
         }));
         if( Products.length == 0)
             return;
-        setPortalProducts( Products );
+        setPortalProducts( Products.filter(item => item.config.SelfService) );
         setLoading(false);
     }
     useEffect(()=>{ getPortalProducts() }, []);

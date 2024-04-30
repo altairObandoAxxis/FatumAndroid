@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Sis11MobileFatum",
-    "slug": "Sis11MobileFatum",
-    "version": "11.0.20",
+    "name": "Sis11Mobile",
+    "slug": "sis11mobile",
+    "version": "11.0.01",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/SplashFatum.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,20 +16,20 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.axxis-systems.sisosmobile"
+      "bundleIdentifier": "com.axxis-systems.sisosmobiledemo"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.axxissystems.sisosmobile",
+      "package": "com.axxissystems.sisosmobiledemo",
       "versionCode": 11,
       "googleServicesFile": "./google-services.json"
     },
     "extra": {
       "eas": {
-        "projectId": "9d74818a-72df-4e34-8cbb-b6732242c5c7"
+        "projectId": "7604aedc-2428-4f48-963c-07acac63e185"
       }
     },
     "runtimeVersion": {

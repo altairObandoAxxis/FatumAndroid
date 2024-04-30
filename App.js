@@ -7,12 +7,12 @@ import { Main } from './Views/Main';
 import { StatusBar } from 'expo-status-bar';
 const theme = createTheme({
   lightColors: {
-    primary: '#f3712a',
+    //primary: '#f3712a',
   },
   darkColors: {
-    primary: '#000',
+    //primary: '#000',
   },
-  mode: 'light',
+  //mode: 'light',
 });
 
 
