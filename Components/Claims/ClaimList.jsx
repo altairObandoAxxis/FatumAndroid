@@ -10,17 +10,17 @@ export const ClaimList =({ navigation }) =>{
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme()
     const searchBar = createRef();
-    // Set data
-    useEffect(()=>{
-        setClaims(userData.Claims);
-    },[userData.Claims])
     // Filter claims.
     useEffect(()=>{
+        let myClaims = (userData.Claims || []).map(claim => {
+            claim.policyCode = userData.Policies.find(item => item.id == claim.lifePolicyId)?.code ?? "";
+            return claim;
+        })
         if(!filter || filter == ''){
-            setClaims(userData.Claims);
+            setClaims(myClaims);
             return
         }
-        let filteredClaims = (userData.Claims || [])
+        let filteredClaims = (myClaims)
             .filter(item => (item.code || Number(item.id).toString()).toLowerCase().includes( filter.toLowerCase() ));
         setClaims(filteredClaims);
     },[filter]);
