@@ -93,9 +93,7 @@ export const Home =()=>{
     }
     useEffect(()=>{
         fetchUserData();
-        setUserData({...userData, 
-        refreshBadges: fetchUserData })
-    },[userData.token])
+    },[userData.token, userData.refreshId])
     useEffect(() => {
         registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
     }, []);

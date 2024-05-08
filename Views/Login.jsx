@@ -40,7 +40,7 @@ export const Login =()=>{
 
     return <View style={{ flex: 1, width: screenWidth, justifyContent: 'center' }}>
         <ImageBackground 
-            source={require('../assets/landing.png')} 
+            // source={require('../assets/landing.png')} 
             resizeMode='cover' 
             style={{ 
                 flex: 1, 

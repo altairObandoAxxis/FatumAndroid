@@ -10,10 +10,6 @@ export const ClaimList =({ navigation }) =>{
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme()
     const searchBar = createRef();
-    // Set data
-    useEffect(()=>{
-        setClaims(userData.Claims);
-    },[userData.Claims])
     // Filter claims.
     useEffect(()=>{
         if(!filter || filter == ''){

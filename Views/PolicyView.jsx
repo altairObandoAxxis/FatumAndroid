@@ -1,8 +1,8 @@
 
-import { useTheme, Text } from '@rneui/themed';
+import { useTheme } from '@rneui/themed';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PolicyList, PolicyDetail } from '../Components/Policy';
-import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
+import { ProductForm, ProductList, ProductOptList, ProductOptionView, QuoteCompleted } from '../Components/Quote'
 import { Platform } from 'react-native';
 const Stack = createStackNavigator();
 
@@ -58,6 +58,13 @@ export const PolicyView =()=>{
                         headerTitle: Platform.OS == 'android' ? 'Product Options': '',
                         headerBackTitle: 'Product Options'
                         }} />                
+                <Stack.Screen 
+                 name='quoteCompleted'
+                 component={QuoteCompleted}
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Completed': '',
+                    headerBackTitle: 'Completed'
+                 }}/>
             </Stack.Group>
             
             

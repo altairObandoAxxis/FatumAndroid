@@ -10,10 +10,6 @@ export const PolicyList =({ navigation })=>{
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme();
     const searchBar = createRef();
-    // Set data
-    useEffect(()=>{
-        setPolicies(userData.Policies);
-    },[userData.Policies])
     // Filter policies.
     useEffect(()=>{
         if(!filter || filter == ''){

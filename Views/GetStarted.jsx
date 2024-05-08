@@ -1,22 +1,15 @@
-import { View, Image, ImageBackground, Platform } from 'react-native';
+import { View, Image, Platform } from 'react-native';
 import { Button, Text, Icon, useTheme } from '@rneui/themed'
 import { createStackNavigator } from '@react-navigation/stack';
-import { PolicyCardList } from '../Components/Policy/PolicyCardList';
 import { useUserData } from '../Util/UserContext'
-import { DoCmd } from '../Api/doCmd';
-import { useState, useEffect } from 'react';
-import { ProductForm, ProductList, ProductOptList, ProductOptionView } from '../Components/Quote'
+import { ProductForm, ProductList, ProductOptList, ProductOptionView, QuoteCompleted } from '../Components/Quote'
 import { PolicyDetail } from '../Components/Policy';
 const Stack = createStackNavigator();
 
 export const GetStarted =({ navigation })=>{
     const { userData, setUserData } = useUserData();
     const { theme } = useTheme();
-    return <View style={{ flex: 1 }}>
-        <ImageBackground 
-            source={require('../assets/landing.png')} 
-            resizeMode='cover'
-            style={{ flex: 1 }} >
+    return <View style={{ flex: 1, paddingBottom: 10 }}>
             <View style={{ display: 'flex', flexDirection: 'row', padding: 10, justifyContent: 'space-between'  }}>
                 <Image
                     source={require('../assets/iconTransparent.png')} 
@@ -39,8 +32,7 @@ export const GetStarted =({ navigation })=>{
                     </Text>
                 </View>
                 <Button title='Get Started >' onPress={ ()=> navigation.navigate('newProduct')} />
-            </View>            
-        </ImageBackground>        
+            </View>
     </View>
 }
 export const GetStartedView =()=>{
@@ -94,7 +86,14 @@ export const GetStartedView =()=>{
                 options={{ 
                     headerTitle: Platform.OS == 'android' ? 'Product Options': '',
                     headerBackTitle: 'Product Options'
-                    }} />                
+                    }} />
+            <Stack.Screen 
+                 name='quoteCompleted'
+                 component={QuoteCompleted}
+                 options={{
+                    headerTitle: Platform.OS == 'android' ? 'Completed': '',
+                    headerBackTitle: 'Completed'
+                 }}/>              
         </Stack.Group>
         </Stack.Navigator>)
 }

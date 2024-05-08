@@ -1,9 +1,30 @@
-import { ListItem, Text, useTheme } from '@rneui/themed';
-import { View } from 'react-native';
+import { Button, Icon, ListItem, Text, useTheme } from '@rneui/themed';
+import { useState } from 'react';
+import { Alert, View } from 'react-native';
+import { DoCmd } from '../../Api';
+import { useUserData } from '../../Util/UserContext';
 
-export const ProductOptionView =({ route })=>{
+export const ProductOptionView =({ route, navigation })=>{
     const { Option } = route.params;
     const { theme  } = useTheme();
+    const [ loading, setLoading ] = useState(false);
+    const { userData: { token }, setUserData } = useUserData();
+    const onSaveQuotePress = async ()=>{
+        try {
+            setLoading(true);
+            const QuotePortalProduct = await DoCmd({ cmd:'QuotePolicy', data:{ policy: { ...Option, id: 0 }, dbMode: false, save: true, action: 'QuotePortalProduct' }, token  });
+            if(!QuotePortalProduct.ok){
+               console.log(QuotePortalProduct.msg)
+               throw QuotePortalProduct.msg;
+            }
+            setUserData( currentData => ({...currentData, refreshId: new Date().getTime() }))
+            navigation.navigate('quoteCompleted', QuotePortalProduct.outData )
+        } catch (error) {
+            Alert.alert(JSON.stringify(error));
+        }finally{
+            setLoading(false)
+        }
+    }
     return (
         <View style={{ 
             display: 'flex', 
@@ -43,6 +64,16 @@ export const ProductOptionView =({ route })=>{
                 <ListItem.Content>
                     <Text style={{ color: theme.colors.greyOutline }}>Premium:</Text>
                     <Text h4>{ `${Number(Option.annualTotal || 0 ).toLocaleString() } ${Option.currency}`}</Text>
+                </ListItem.Content>
+            </ListItem>
+            <ListItem>
+                <ListItem.Content>
+                    <Button 
+                        title=' Save Quote' 
+                        icon={ <Icon name='folder-plus-outline' type='material-community' color={ theme.colors.primary } /> }
+                        type='clear'
+                        onPress={ onSaveQuotePress }
+                        loading={ loading }/>
                 </ListItem.Content>
             </ListItem>
         </View>)

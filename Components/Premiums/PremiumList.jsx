@@ -10,10 +10,6 @@ export const PremiumList =({ navigation })=>{
     const [ filter, setFilter ] = useState();
     const { theme } = useTheme();
     const searchBar = createRef();
-    // Set data
-    useEffect(()=>{
-        setPremiums(userData.Premiums);
-    },[userData.Premiums])
     // Filter Premiums.
     useEffect(()=>{
         if(!filter || filter == ''){
