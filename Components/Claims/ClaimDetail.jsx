@@ -64,6 +64,12 @@ export const ClaimDetail =({ route })=>{
         </ListItem>
         <ListItem bottomDivider>
             <ListItem.Content>
+                <Text style={{ fontWeight:'100', color: subTitleColor }}>Date of Occurrence: </Text>
+                <Text>{ (Claim.occurrence || '').split('T',1).pop() }</Text>
+            </ListItem.Content>
+        </ListItem>
+        <ListItem bottomDivider>
+            <ListItem.Content>
                 <Text style={{ fontWeight:'100', color: subTitleColor }}>Claim Type: </Text>
                 <Text>{ Claim.claimType }</Text>
             </ListItem.Content>
