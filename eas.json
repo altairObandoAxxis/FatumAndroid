@@ -22,7 +22,7 @@
       "android": {
         "buildType": "apk"
       },
-      "channel": "android_apk"
+      "channel": "production"
     }
   },
   "submit": {
