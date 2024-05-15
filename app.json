@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Sis11Mobile",
-    "slug": "sis11mobile",
+    "name": "Sis11MobilePrime",
+    "slug": "sis11mobileprime",
     "version": "11.0.01",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,27 +16,27 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.axxis-systems.sisosmobiledemo"
+      "bundleIdentifier": "com.axxis-systems.sisosmobileprime"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.axxissystems.sisosmobiledemo",
+      "package": "com.axxissystems.sisosmobileprime",
       "versionCode": 11,
       "googleServicesFile": "./google-services.json"
     },
     "extra": {
       "eas": {
-        "projectId": "7604aedc-2428-4f48-963c-07acac63e185"
+        "projectId": "4cce8397-e95d-4240-827f-4ffafd65a77e"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/7604aedc-2428-4f48-963c-07acac63e185"
+      "url": "https://u.expo.dev/4cce8397-e95d-4240-827f-4ffafd65a77e"
     },
     "owner": "sis11mobilebeta"
   }

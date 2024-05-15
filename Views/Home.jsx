@@ -60,9 +60,8 @@ async function registerForPushNotificationsAsync() {
       token = await Notifications.getExpoPushTokenAsync({
         projectId: Constants.expoConfig.extra.eas.projectId,
       });
-      console.log(token.data);
     } else {
-      alert('Must use physical device for Push Notifications');
+      console.log('Must use physical device for Push Notifications');
       return '';
     }
   
@@ -108,7 +107,7 @@ export const Home =()=>{
         mobileInfo: `${Device.brand} ${Device.modelName}`,
         platform: Platform.OS.toUpperCase(),
         user: userData.email,
-      }).then( response => console.log(response))
+      })
     },[expoPushToken])
 
     return <View style={{ paddingTop: insets.top, flex: 1, backgroundColor: 'white' }}>

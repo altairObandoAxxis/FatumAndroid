@@ -1,5 +1,5 @@
 
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider, createTheme } from '@rneui/themed';
 import { UserProvider } from './Util/UserContext';
@@ -7,12 +7,12 @@ import { Main } from './Views/Main';
 import { StatusBar } from 'expo-status-bar';
 const theme = createTheme({
   lightColors: {
-    //primary: '#f3712a',
+    primary: '#159fdb',
   },
   darkColors: {
-    //primary: '#000',
+    primary: '#000',
   },
-  //mode: 'light',
+  mode: 'light',
 });
 
 

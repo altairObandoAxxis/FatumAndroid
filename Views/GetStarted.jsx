@@ -12,7 +12,7 @@ export const GetStarted =({ navigation })=>{
     return <View style={{ flex: 1, paddingBottom: 10 }}>
             <View style={{ display: 'flex', flexDirection: 'row', padding: 10, justifyContent: 'space-between'  }}>
                 <Image
-                    source={require('../assets/iconTransparent.png')} 
+                    source={require('../assets/icon.png')} 
                     style={{ resizeMode:'contain', alignSelf:'center', width:100, height: 40 }} />
                 <Icon type='font-awesome' name='power-off' color={theme.colors.primary} style={{ marginRight: 10 }} onPress={ ()=>{
                     console.log('logout');

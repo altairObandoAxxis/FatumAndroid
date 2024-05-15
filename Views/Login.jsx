@@ -9,8 +9,8 @@ export const Login =()=>{
     const emailRef = createRef();
     const passwordRef = createRef();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ email, setEmail ] = useState('demo\\mobileuser@axxis-systems.com')
-    const [ passw, setPassw ] = useState('(9g>kpVNI3')
+    const [ email, setEmail ] = useState('prime\\noel.obando@axxis-systems.com')
+    const [ passw, setPassw ] = useState('Noel!123456')
     const [ errorEmail, setErrorEmail ] = useState();
     const [ errorPass, setErrorPass ] = useState();
     const userData = useUserData();
@@ -40,7 +40,6 @@ export const Login =()=>{
 
     return <View style={{ flex: 1, width: screenWidth, justifyContent: 'center' }}>
         <ImageBackground 
-            // source={require('../assets/landing.png')} 
             resizeMode='cover' 
             style={{ 
                 flex: 1, 
@@ -53,7 +52,7 @@ export const Login =()=>{
                   flex: 1,
                   alignItems:'stretch'}}>
                 <Image
-                  source={require('../assets/iconWithText.png')} 
+                  source={require('../assets/logo.png')} 
                   style={{ 
                       resizeMode:'contain', 
                       alignSelf:'center', 
