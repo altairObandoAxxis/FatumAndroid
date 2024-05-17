@@ -12,22 +12,8 @@ const Stack = createStackNavigator();
 
 export const GetStarted =({ navigation })=>{
     const { userData, setUserData } = useUserData();
-    const [ policies, setPolicies ] = useState([]);
     const { theme } = useTheme()
-    const fetchUserData =()=>{
-        DoCmd({
-            cmd: 'LoadEntities', 
-            data:{ 
-                entity: 'LifePolicy',
-                filter: `holderId=${userData.contactId} ORDER BY id DESC `,
-                fields: 'id,lob,code,currency,[start],[end], active, insuredSum,productCode'
-            }, 
-            token: userData.token
-         })
-        .then( LoadEntities => {
-            setPolicies((LoadEntities.outData || [] ))
-        }).catch(err => console.log(err))
-    }
+    
     const getPortalProducts = async () => {
         const GetPortalProducts = await DoCmd({ cmd: 'GetPortalProducts', data:{}, token: userData.token });
         const Products = GetPortalProducts.outData.map(product => ({
@@ -40,15 +26,12 @@ export const GetStarted =({ navigation })=>{
         setUserData({...userData, Products });
     }
     useEffect(()=>{
-        fetchUserData();
         getPortalProducts();
     },[userData.contactId]);
     useEffect(()=>{
         if( typeof userData.refreshId === 'undefined' || userData.refreshId == null)
             return; 
-        fetchUserData();
         getPortalProducts();
-        console.log('Refresh by token: ' + userData.refreshId )
     },[ userData.refreshId ])
     const height = Dimensions.get('window').height;
     return <ScrollView style={{ flex: 1, backgroundColor: 'white'}}>
@@ -67,7 +50,7 @@ export const GetStarted =({ navigation })=>{
             <View style={{ marginLeft: 15, marginRight: 15, gap: 5 }}>
                 <Text h2>My Policies </Text>
                 <PolicyCardList
-                    dataSource={ policies }
+                    dataSource={ userData?.Policies ?? []}
                     navigation={ navigation } />
                 <Image
                     source={require('../assets/travelinsurance.png')} 

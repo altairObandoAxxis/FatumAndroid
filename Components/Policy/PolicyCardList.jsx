@@ -17,6 +17,7 @@ export const PolicyCardList =({ dataSource, navigation })=>{
         keyExtractor={ item => item.id }
         horizontal={ true }
         contentContainerStyle={{ height: 160, marginTop: 10 }}
+        initialNumToRender={4}
         ListEmptyComponent={ <PolicyCard item={ null }/> }
         onEndReachedThreshold={ 0.8 }
         onEndReached={ onEndReached }

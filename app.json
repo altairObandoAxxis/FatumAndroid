@@ -2,7 +2,7 @@
   "expo": {
     "name": "Sis11MobileEquity",
     "slug": "sis11mobileequity",
-    "version": "11.0.21",
+    "version": "11.0.22",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,8 +24,8 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.axxissystems.equity",
-      "versionCode": 21,
-      "version": "11.0.21",
+      "versionCode": 22,
+      "version": "11.0.22",
       "googleServicesFile": "./google-services.json"
     },
     "extra": {
