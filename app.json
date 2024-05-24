@@ -25,7 +25,6 @@
       },
       "package": "com.axxissystems.equity",
       "versionCode": 22,
-      "version": "11.0.22",
       "googleServicesFile": "./google-services.json"
     },
     "extra": {
