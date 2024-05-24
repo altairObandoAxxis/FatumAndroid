@@ -25,7 +25,6 @@
       },
       "package": "com.axxissystems.sisosmobile",
       "versionCode": 23,
-      "versionName": "11.0.23",
       "googleServicesFile": "./google-services.json"
     },
     "extra": {

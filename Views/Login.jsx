@@ -12,7 +12,7 @@ export const Login =()=>{
     const emailRef = createRef();
     const passwordRef = createRef();
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ email, setEmail ] = useState()
+    const [ email, setEmail ] = useState('fatumuat\\')
     const [ passw, setPassw ] = useState()
     const [ errorEmail, setErrorEmail ] = useState();
     const [ errorPass, setErrorPass ] = useState();

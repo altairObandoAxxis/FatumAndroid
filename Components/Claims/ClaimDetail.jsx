@@ -76,7 +76,7 @@ export const ClaimDetail =({ route })=>{
         </ListItem>
         <ListItem bottomDivider>
             <ListItem.Content>
-                <Text style={{ fontWeight:'100', color: subTitleColor }}>Insured Sum: </Text>
+                <Text style={{ fontWeight:'100', color: subTitleColor }}>Status: </Text>
                 <Text>{estado}</Text>
             </ListItem.Content>
         </ListItem>
